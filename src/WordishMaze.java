@@ -1,134 +1,192 @@
 import java.util.Objects;
+import java.util.Random;
+
+/**
+ * The WordishMaze class is represented by WordishMaze. WordishMaze is a game program with guide from MazeCharacters,
+ * tires to solve the puzzles, and the amount of hints the player requestsed
+ * */
 
 public class WordishMaze {
-    private String action;
     private MazeCharacters guide;
 
+    private int tries;
+    private int hints;
 
-    public WordishMaze(){}
-    public WordishMaze(MazeCharacters guide){
+    Random r = new Random();
+
+    /**
+     * Constructor for the WordishMaze class. This creates a new instance of a WordishMaze given
+     * the below parameters.
+     *
+     * @param guide represents the name of the guide from MazeCharacters
+     * @param tries represents the number of tries the player use to solve the riddles to reach an ending
+     * @param hints represents the number of hints the person requested in totsl to reach an ending.
+     */
+
+    public WordishMaze(MazeCharacters guide, int tries, int hints){
+
         this.guide = guide;
+        this.tries = tries;
+        this.hints = hints;
     }
 
+    /**
+     * The updatetries method will update the amount of tries that the player use during their game to the class
+     * The tries corresponds with the variable wrong in the Runner class
+     *
+     * @param tries an integer representing the amount of tries the user had done to solve one riddle
+     * @return
+     */
+
+    public void updatetries (int tries){
+        tries = this.tries;
+    }
+    /**
+     * The updatehint method will update the amount of hint that the player requested to solve one riddle
+     * The hints corresponds with the variavle hint in the runner class
+     *
+     * @param hints an interger representing the amount of tries the user had requested to solve one riddle
+     */
+    public void updatehint (int hints){
+        hints = this.hints;
+    }
+
+    /**
+     *
+     * @return
+     */
     //    The methods are for dialogues. Each method is called when that specific dialogue is needed.
     public String introduction(){
         return """
-               \nThe rumors about the forest at the edge of the town is spreading.
-               You've heard little kids fantasying about what's hidden in there, and the possible adventures.
-               Their "excited adventures" only scares you. Since you know whats inside the forest is more un-understandable than plain rumors.
-               \nWElc0mE! to the forest of hidden words and fun.
-               Do you want in? (y for yes, n for no).
-               (all answers should be in lowercase)""";
+              \nThe rumors about the forest at the edge of the town is spreading.
+              You've heard little kids fantasying about what's hidden in there, and the possible adventures.
+              "adventure" now days only scare you. Since you've gotten sick of the unknown after exploring one perticular place.
+              \n
+              
+              You've been parparing for weeks for this, as a self-credited advanturer, you sure as hell wouldn't want to miss this 
+              amazing opportunity to explore, and possibly get rich, so you marched straight to the entrance.
+              WELCOME! to the forest of hidden words and fun.
+              Do you want in? (y for yes, n for no).""";
     }
+
+    public String guideSpook(){
+        return """
+                You walk peacefully in the forest, the green and undisturbed envireonment is quite pretty. But it sure gets boring with this none changing scene
+                Suddenly something moving in the bushes catch your attention. 
+                an ____ jumps out
+                """ + guide.getName() + """
+                
+                Yes an  """ + guide.getName() + """
+                 jumps out and spooked you. 
+                They say that they know this forest the best, and wiil be extremely happy to lead you through
+                and you thought, why not? you are already bored of being alone anyways.
+                """;
+    }
+
     public String growthStud(){
         return guide.introdution() + """
-               \nYou've reached the growthStud; a place for every newly arrived beings.
-               Each of the signs are specialized and different, look, I think that one is for you.
-               You spot an oak sign growing out of the yellow soil ground, before you could think further. The writings grabbed your attention, it reads
-               
-               """ + guide.classicRiddle[0];
+              \nYou've reached the growthStud; a place for every newly arrived beings to the forest. They are provided with riddles and questions
+              
+              You spot an cottonwood sign growing out of the dark glittering ground, before you could think further. The writings grabbed your attention
+              While you are reading, the view around you begin to change, you feel like you are being watched by many many eyes. (enter "h" for hints for the puzzle)
+             
+              """ + guide.classicRiddle[0];
     }
     public String microShroom(){
         return """
-               Congrats on solving the riddle. The answer is "star". Lets continue on!
-               To the cutest place ever! The MicroShroom's
-               we've arrived at your next destination. The MicroShrooms, please be aware of yourself at all times. The residences here are usually very nice
-               Don't hurt any of the Shrooms, they are under The Mother's protection.
-               \n Honestly you are not sure of this Shroomly place.... "run" to try to run away, or "follow" to continue following your guide.""";
+              Congrats on solving the riddle. The answer is "star". Lets continue on!
+              To the cutest place ever! The MicroShroom's
+              we've arrived at your next destination. The MicroShrooms, please be aware of yourself at all times. The residences here are usually very nice
+              Don't hurt any of the Shrooms, they are under The Mother's protection.
+              \n Honestly you are not sure of this Shroomly place.... "run" to try to run away, or "follow" to continue following your guide.""";
+
 
     }
 
+
     public String shroomChoices(String choices){
         if (choices.equals("follow")) {
-                return """
-                        you follow your guide to a rather huge shroom, It gives you a offer to either 
-                        a. PLAY wth the srooms 
-                        b. Answer the riddle       
-                        """;
+            return """
+                       you follow your guide to a rather huge shroom, It gives you a offer to either
+                       a. PLAY wth the srooms
+                       b. Answer the riddle      
+                       """;
         }
         if ( choices.equals("run")){
             return """
-                     You spaced out during the introduction's of the place, the forest seems all weird and disgusting. So, when you see your guide looking too closely at a mushroom
-                     You booked it. Doesn't care of any showrooms along the way. You thought you heard the sound of someone calling you. But you don't care, all you could think of is to LEAVE.
-                    """;
+                    You spaced out during the introduction's of the place, the forest seems all weird and disgusting. So, when you see your guide looking too closely at a mushroom
+                    You booked it. Doesn't care of any showrooms along the way. You thought you heard the sound of someone calling you. But you don't care, all you could think of is to LEAVE.
+                   """;
         }
         return choices;
     }
 
+
     public String forestForest(){
         return """
-                Thank you for following on with me :D
-                I always forgot how beautiful the microShroom could be, too bad we didn't meet Mother Spore today
-                Let's see.. The next step would be Forest Tree, just like the growthStud, this is not any ordinary tree either. This tree has been here longer than this forest
-                and since this would be the last stop before we have to send you back
-                I don't WANT to sent you back, we rarely get visitors like you...
-                Oh look! there's the Forest Tree
-                
-                The Forest offers one puzzle per day, and it's all different each time! let's see what's today's""" + guide.wordWord[0];
+               Thank you for following on with me :D
+               I always forgot how beautiful the microShroom could be, too bad we didn't meet Mother Spore today
+               Let's see.. The next step would be Forest Tree, just like the growthStud, this is not any ordinary tree either. This tree has been here longer than this forest
+               and since this would be the last stop before we have to send you back
+               I don't WANT to sent you back, we rarely get visitors like you...
+               Oh look! there's the Forest Tree
+              
+               The Forest offers one puzzle per day, and it's all different each time! let's see what's today's""" + guide.classicRiddle[1]
+                + """
+                   Wait! I've never see this one before!
+                   ~
+                   ~
+                   ~
+                   The forest trap suddenly shrink, the leafs that you previously could easily use as blankets are now the size of palm.
+                   The tree is now only a few feets taller than you.
+                   ~
+                   A leaf quickly turn yellow, somehow you know you have to finish this last puzzle.
+                   Quickly as well, it only seems there's time for only 1 try
+                   """;
     }
     public String forestTrap(String answer){
-        String word = """
-                    Wait! I've never see this one before!
-                    ~
-                    ~
-                    ~
-                    The forest trap suddenly shrink, the leafs that you previously could easily use as blankets are now the size of palm. 
-                    The tree is now only a few feets taller than you. 
-                    ~
-                    A leaf quickly turn yellow, somehow you know you have to finish this last puzzle.
-                    Quickly as well, it only seems there's time for only 1 try
-                    """;
-            if (answer.equals("techtalk") || answer.equals("tech talk")){
-                word = word + """
-                        Your vision blurred, it seems that everything is all back to normal. You are congratulated on your ability to solve the riddles.
-                        """;
-            }
-            else {return "you sadly had failed to solve the riddle. The leaves on the forest tree had turn all yellow. " +
-                         "End. (Thank You for playing!) ";}
+        String word = "";
+        if (answer.equals("1") || answer.equals("one")){
+            word = word + """
+                       Your vision blurred, it seems that everything is all back to normal. You are congratulated on your ability to solve the riddles.
+                       """;
+        }
+        else {return "you sadly had failed to solve the riddle. The leaves on the forest tree had turn all yellow. " +
+                "End. (Thank You for playing!) ";}
         return word;
     }
 
-    public String firstEndOfGame(){
-        return "You have left the forest. Did you enjoy the stay? Hope you had fun, and come back soon :D";
+
+    public String toString_(){
+        return "This is one of the ending, it tooked you " + hints + " hints and "+ tries + " tries to get to this ending";
     }
     public String shroomEnd(String choices){
         String word = "";
         if (choices.equals("a")){
             word = """
-                    you didn't realize how long has passed by
-                    didn't hear the sound of someone calling you to leave
-                    you don't know when you started to forget the feeling of being able to feel things
-                    BUT IT DOESN'T MATTER
-                    you are with THE MOTHER SPORE, you are part of the hivemind, and that's all you need to know
-                    \n--------------------------------------
-                    -END. (you've lost your ability to think clearly, and you are too weak to fight against MOTHER SPORE. Next time, try another root)
-                    """;}
+                   you didn't realize how long has passed by
+                   didn't hear the sound of someone calling you to leave
+                   you don't know when you started to forget the feeling of being able to feel things
+                   BUT IT DOESN'T MATTER
+                   you are with THE MOTHER SPORE, you are part of the hivemind, and that's all you need to know
+                   \n--------------------------------------
+                   -END. (you've lost your ability to think clearly, and you are too weak to fight against MOTHER SPORE. Next time, try another root)
+                   """;}
         if (choices.equals("b")){
             word = "riddle time!" + guide.oddDifference[0];
         }
         return word;
     }
 
-
-//    This method down below is for checking the answer for the riddles and mazes.
-public String answerFormatte( String userinput, String correctAnswer ){
-if (userinput.equals(correctAnswer)){
-//            return "Alright! let's move on \nexperience would \"hopefully\" be remembered.";
-return "";
-}
-else {
-return "Nope, wrong. Perhaps try again?";
-}
-}
-
-
-
-
-
-
-
-
-
+    //    This method down below is for checking the answer for the riddles and mazes.
+    public String answerFormat(String userinput, String correctAnswer, String correct2, String correct3 ) {
+        String[] wrong = {"Nope, Maybe try again?","It's wronged","Behhh, incorrect", "Nah","This is not an answer choice", ""};
+        if (Objects.equals(userinput, correctAnswer) || (userinput.equals(correct2)) || (userinput.equals(correct3))) {
+            return wrong[r.nextInt(wrong.length)];
+        } else {
+            return "Nope, Maybe try again?";
+        }
+    }
 
 }
 
