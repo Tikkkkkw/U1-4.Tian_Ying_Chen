@@ -35,7 +35,6 @@ public class WordishMaze {
      * The tries corresponds with the variable wrong in the Runner class
      *
      * @param tries an integer representing the amount of tries the user had done to solve one riddle
-     * @return
      */
 
     public void updatetries (int tries){
@@ -52,10 +51,10 @@ public class WordishMaze {
     }
 
     /**
-     *
-     * @return
+     * The introduction method is the first text that the player will see when they starts the game sets the background spookiness to the game.
+     * @returns the formatted text block of the introduction to the game.
      */
-    //    The methods are for dialogues. Each method is called when that specific dialogue is needed.
+
     public String introduction(){
         return """
               \nThe rumors about the forest at the edge of the town is spreading.
@@ -69,6 +68,10 @@ public class WordishMaze {
               Do you want in? (y for yes, n for no).""";
     }
 
+    /**
+     * The method guideSpook calls the getName method of the guide from the MazeCharacters class.
+     * @returns an formatted text block with an information from the MazeCharacters class
+     */
     public String guideSpook(){
         return """
                 You walk peacefully in the forest, the green and undisturbed envireonment is quite pretty. But it sure gets boring with this none changing scene
@@ -83,6 +86,11 @@ public class WordishMaze {
                 """;
     }
 
+    /**
+     * the method growthStud calls the introduction method of the guide, and it also calls for the first data in the classicRiddle Array of the guide.
+     * Both of which is from the MazeCharacters class
+     * @return a formatted text block with the guide's introduction and the first riddle of the game!
+     */
     public String growthStud(){
         return guide.introdution() + """
               \nYou've reached the growthStud; a place for every newly arrived beings to the forest. They are provided with riddles and questions
@@ -92,6 +100,11 @@ public class WordishMaze {
              
               """ + guide.classicRiddle[0];
     }
+
+    /**
+     * The method microShroom contains a text block of the information for the player's choices of if they choose to continue on the main path, or to run stray
+     * @returns an formatted text block, nothing special about this one, but it's presented with a choice. So it is indeed special.
+     */
     public String microShroom(){
         return """
               Congrats on solving the riddle. The answer is "star". Lets continue on!
@@ -99,10 +112,13 @@ public class WordishMaze {
               we've arrived at your next destination. The MicroShrooms, please be aware of yourself at all times. The residences here are usually very nice
               Don't hurt any of the Shrooms, they are under The Mother's protection.
               \n Honestly you are not sure of this Shroomly place.... "run" to try to run away, or "follow" to continue following your guide.""";
-
-
     }
 
+    /**
+     * This method shroomChoices takes in a string as an parameter, which the return value are different based on what the string is.
+     * @param choices an String representing the choice that the user made in regardes to the question preseted in microShroom
+     * @return This method's return is based on what the parameter is. For one answer, the player is led to an early ending, and for the other answer, the user is led to another question choice
+     */
 
     public String shroomChoices(String choices){
         if (choices.equals("follow")) {
@@ -119,6 +135,29 @@ public class WordishMaze {
                    """;
         }
         return choices;
+    }
+
+    /**
+     * This method shroomEnd takes in a string as a parameter, base on what the string is, this mathod returns different values
+     * @param choices an String representing the player's choice to the question presented in shroomChoices if they choose the answer choice "follow"
+     * @return
+     */
+    public String shroomEnd(String choices){
+        String word = "";
+        if (choices.equals("a")){
+            word = """
+                   you didn't realize how long has passed by
+                   didn't hear the sound of someone calling you to leave
+                   you don't know when you started to forget the feeling of being able to feel things
+                   BUT IT DOESN'T MATTER
+                   you are with THE MOTHER SPORE, you are part of the hivemind, and that's all you need to know
+                   \n--------------------------------------
+                   -END. (you've lost your ability to think clearly, and you are too weak to fight against MOTHER SPORE. Next time, try another root)
+                   """;}
+        if (choices.equals("b")){
+            word = "riddle time!" + guide.oddDifference[0];
+        }
+        return word;
     }
 
 
@@ -159,23 +198,6 @@ public class WordishMaze {
 
     public String toString_(){
         return "This is one of the ending, it tooked you " + hints + " hints and "+ tries + " tries to get to this ending";
-    }
-    public String shroomEnd(String choices){
-        String word = "";
-        if (choices.equals("a")){
-            word = """
-                   you didn't realize how long has passed by
-                   didn't hear the sound of someone calling you to leave
-                   you don't know when you started to forget the feeling of being able to feel things
-                   BUT IT DOESN'T MATTER
-                   you are with THE MOTHER SPORE, you are part of the hivemind, and that's all you need to know
-                   \n--------------------------------------
-                   -END. (you've lost your ability to think clearly, and you are too weak to fight against MOTHER SPORE. Next time, try another root)
-                   """;}
-        if (choices.equals("b")){
-            word = "riddle time!" + guide.oddDifference[0];
-        }
-        return word;
     }
 
     //    This method down below is for checking the answer for the riddles and mazes.
