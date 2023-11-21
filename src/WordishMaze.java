@@ -1,7 +1,7 @@
 import java.util.Objects;
 import java.util.Random;
 
-/**
+/**nad
  * The WordishMaze class is represented by WordishMaze. WordishMaze is a game program with guide from MazeCharacters,
  * tires to solve the puzzles, and the amount of hints the player requestsed
  * */
@@ -140,7 +140,7 @@ public class WordishMaze {
     /**
      * This method shroomEnd takes in a string as a parameter, base on what the string is, this mathod returns different values
      * @param choices an String representing the player's choice to the question presented in shroomChoices if they choose the answer choice "follow"
-     * @return
+     * @return returns the ewsults of the two choices of the user. For answer choice B, the user would also need to solce an riddle to continue.
      */
     public String shroomEnd(String choices){
         String word = "";
@@ -160,7 +160,10 @@ public class WordishMaze {
         return word;
     }
 
-
+    /**
+     * This method forestForest contains two text block separated by the calling of a Array from guide of the MazeCharacter's clas
+     * @returns two formatted text block with an riddle in the middle separating the two.
+     */
     public String forestForest(){
         return """
                Thank you for following on with me :D
@@ -183,6 +186,12 @@ public class WordishMaze {
                    Quickly as well, it only seems there's time for only 1 try
                    """;
     }
+
+    /**
+     * This method, forestTrap takes one string as parameter, based on what the answer is, the answer returned will be different
+     * @param answer an String representing the player's input, which is their answer to the riddle
+     * @returns an string, the string returns differently based on what the player inputted as their answer
+     */
     public String forestTrap(String answer){
         String word = "";
         if (answer.equals("1") || answer.equals("one")){
@@ -195,12 +204,23 @@ public class WordishMaze {
         return word;
     }
 
+    /**
+     * This method toString_ takes both the hints and tries and format them in a string
+     * @return the formatted string of hint's and tries
+     */
 
     public String toString_(){
         return "This is one of the ending, it tooked you " + hints + " hints and "+ tries + " tries to get to this ending";
     }
 
-    //    This method down below is for checking the answer for the riddles and mazes.
+    /**
+     * This method answerFormat takes in four String parameters, it's purpose is to see if the user get an riddle correctly or not.
+     * @param userinput an String what the user inputted as the answer of the riddle
+     * @param correctAnswer an String representing the correct answer of the riddle
+     * @param correct2 an String representing the second correct answer
+     * @param correct3 an String representing the third correct answer
+     * @returns an String, indicating the user whether they get the answer of the riddle correctly or not
+     */
     public String answerFormat(String userinput, String correctAnswer, String correct2, String correct3 ) {
         String[] wrong = {"Nope, Maybe try again?","It's wronged","Behhh, incorrect", "Nah","This is not an answer choice", ""};
         if (Objects.equals(userinput, correctAnswer) || (userinput.equals(correct2)) || (userinput.equals(correct3))) {

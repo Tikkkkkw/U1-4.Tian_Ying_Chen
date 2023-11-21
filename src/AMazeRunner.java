@@ -11,13 +11,19 @@ public class AMazeRunner {
         String[] creatures = {"Un-flying Owl", "Treemole", "Tiny Giant", "True&False"};
         String guide = creatures[r.nextInt(creatures.length)];
 
+        /*
+        * Creates two new objects, one is guild from the MazeCharacters class, and the other is npc from thr WordishMaze class with three parameters
+        */
         MazeCharacters guild = new MazeCharacters(guide);
         WordishMaze npc = new WordishMaze(guild, wrong, hint);
 
-        String userAnswer = "";
+        /*
+         * The initialized variables "proceed" and "end" are separated from the other boolean variables because
+         * proceed and end are for the entire program, but the other boolean is for separate stages of the game only.
+         */
+        String userAnswer ;
         boolean proceed = true, end = false;
         boolean stud = true, shroom = false, tree = false;
-        ;
 
 
         System.out.println(npc.introduction());
@@ -30,6 +36,8 @@ public class AMazeRunner {
         while (proceed) {
             System.out.println("\n--------------------------------------");
             System.out.println(npc.guideSpook());
+            /* The boolean stud will be false if the events in this while loop is over, also it will start another while loop by declaring the shroom to be true.
+            */
             while (stud) {
                 System.out.println(guide + ": " + npc.growthStud());
                 userAnswer = s.nextLine().toLowerCase();
@@ -48,7 +56,10 @@ public class AMazeRunner {
                 shroom = true;
                 stud = false;
             }
-
+        /*
+        * the events in this while loop is separated by different if statements, the if statement is for different choice events based on the user's action in the game.
+        * at the end of the loop, if the user didn't achieve other ending
+        */
             while (shroom) {
                 System.out.println(npc.microShroom());
                 userAnswer = s.nextLine().toLowerCase();
@@ -75,23 +86,25 @@ public class AMazeRunner {
                                 String[] starHint = {"THIS IS AN NORMAL SENTENCE", "check cl_sely", "find what's WRONG, not fixing it"};
                                 System.out.println(starHint[r.nextInt(starHint.length)]);
                                 hint++;
+                                wrong--;
                             }
-                            tree = true;
-                            shroom = false;
+                            System.out.println(npc.answerFormat(userAnswer, "0", "zero", "Zero"));
                         }
                     }
+                    tree = true;
+                    shroom = false;
                 }
-
                 if (userAnswer.equals("run")) {
-                        System.out.println("You don't know how long you've been running for, you don't know where you are. The tiredness eventually knocks you out"); /*Mic orginaztiobn. DEEPER TO BE ADDED INTO GAME */
-                        s.close();
-                        npc.updatehint(hint);
-                        npc.updatetries(wrong);
-                        npc.toString_();
-                        System.exit(0);
-
+                    s.close();
+                    npc.updatehint(hint);
+                    npc.updatetries(wrong);
+                    npc.toString_();
+                    System.exit(0);
                     }
-
+                /*
+                * this while loop will end no matter if the user gets the riddle correct or not.
+                */
+                }
                 while (tree) {
                     System.out.println(npc.forestForest());
                     userAnswer = s.nextLine().toLowerCase();
@@ -100,9 +113,11 @@ public class AMazeRunner {
 
                     if (userAnswer.equals("1") || userAnswer.equals("one")) {
                         end = true;
+                        tree = false;
                     } else {
                         s.close();
-                        System.out.println("");
+                        System.out.println(" ");
+                        tree = false;
                         proceed = false;
                     }
                 }
@@ -116,4 +131,3 @@ public class AMazeRunner {
             }
         }
     }
-}

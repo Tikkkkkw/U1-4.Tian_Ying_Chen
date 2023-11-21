@@ -1,14 +1,29 @@
+/**
+ * The MazeCharacters class is represented by MazeCharacters, MazeCharacters is a storyteller with name for indication
+ */
 public class MazeCharacters {
     private String name;
 
+    /**
+     * Constructeor for the MazeCharacters class. This creates a new instance of Mazecharacters given the parameter name
+     * @param name represents the name of the storyteller
+     */
     public MazeCharacters(String name){
         this.name = name;
     }
 
+    /**
+     * This method getName is to get the name of the storyteller outside this MazeCharacters class
+     * @returns a String, representing the name of the storyteller
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * This method introduction is a string of the storyteller's introduction
+     * @returns a string organized after the player meets the storyteller/
+     */
     public String introdution(){
         String speach = "What are You doing in this forest? anyways, i'm "+ name + " your personal guide!";
         speach = speach + " So, welcome to the forest! Let's go on an adventure! first of all! The GROWTH STUD!";
